@@ -136,7 +136,7 @@ public:
 struct Product {
 	string name;
 	int price;
-	int receipt;
+	string receipt;
 };
 
 class Mail {
