@@ -4,7 +4,10 @@
 
 int main()
 {
+	Mail vlad(400);
 
-
+	vlad.ShowListProducts();
+	vlad.AddProduct();
+	vlad.ShowListProducts();
 
 }
