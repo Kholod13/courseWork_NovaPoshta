@@ -1,7 +1,18 @@
+﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_SECURE_NO_DEPRECATE
+#pragma warning(disable : 4996)
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <ctime>
+#include <string>
+
+//додавати невиконані доставки в 1 файл
+//додавати виконані доставки в 2 файл
+//змінювати статус виконання в Database
+//Доповнення(редагування, видалення ) послуги
+
 using std::cout;
 using std::cin;
 using std::string;
@@ -37,7 +48,6 @@ struct Database {
 	int year;
 	int month;
 	int day;
-	string time;
 	string status;
 };
 
@@ -122,6 +132,22 @@ public:
 		}
 	}
 
+	void Receipt() {
+
+		for (int i = 0; i < database.size(); i++) {
+			cout << "#" << i + 1 << endl;
+
+			cout << "Name: " << database[i].product.name << endl;
+			cout << "Company: " << database[i].product.company << endl;
+			cout << "Guarantee: " << database[i].product.guarantee << endl;
+			cout << "Price: " << database[i].product.price << endl;
+			cout << "Date: " << database[i].year << "/" << database[i].month << "/" << database[i].day << endl;
+			cout << "Status: " << database[i].status << endl;
+
+		}
+
+	}
+
 	void Order() {
 		ShowListProducts();
 		cout << "\nYour balance: " << balance << endl;
@@ -152,7 +178,6 @@ public:
 		db.year = 1900 + ltm->tm_year;
 		db.month = 1 + ltm->tm_mon;
 		db.day = ltm->tm_mday;
-		db.time = 5 + ltm->tm_hour + ':' + 30 + ltm->tm_min + ':' + ltm->tm_sec;
 		db.status = ss.inProcess;
 
 		database.push_back(db);
@@ -171,18 +196,30 @@ public:
 		default:
 			break;
 		}
+		cout << "\n|RECEIPTS|\n\n";
+		Receipt();
+
+	}
+	//невиконані
+	
+	void ShowServiceOrder() {
+
+	}
+	//виконані
+	void ShowPerformedServices() {
 
 	}
 
 	void Menu() {
 		cout << "\n|MENU| Nova Poshta - Serivses\n\n";
 		cout << "1 - Add product\n";
-		cout << "3 - Order a product\n";
-		cout << "2 - Show the service order\n";
+		cout << "2 - Order a product\n";
+		cout << "3 - Show the service order\n";
 		cout << "4 - Show performed services\n";
 		cout << "5 - Show list products\n";
 		cout << "6 - Edit service\n";
-		cout << "7 - End prccees!\n";
+		cout << "7 - Check status\n";
+		cout << "8 - End prccees!\n";
 
 		int val = 0;
 		cout << "Input number item >>> ";
@@ -211,12 +248,17 @@ public:
 			Menu();
 			break;
 		case 6:
-
+			cout << "\n\nTemporarily not working :(  ......\n\n";
+			Menu();
+			break;
+		case 7:
+			cout << "\n|RECEIPTS|\n\n";
+			Receipt();
 			Menu();
 			break;
 		default:
 			break;
 		}
-	}
+	};
 
 };
