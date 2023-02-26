@@ -4,7 +4,6 @@
 #pragma warning(disable : 4996)
 #include <iostream>
 #include <vector>
-#include <ofstream>
 #include <fstream>
 #include <ctime>
 #include <string>
