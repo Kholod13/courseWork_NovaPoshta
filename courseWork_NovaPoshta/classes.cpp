@@ -4,6 +4,7 @@
 #pragma warning(disable : 4996)
 #include <iostream>
 #include <vector>
+#include <ofstream>
 #include <fstream>
 #include <ctime>
 #include <string>
@@ -59,17 +60,17 @@ private:
 	int balance;
 	
 	string nameNS = "New Services";
-	fstream newServices;
+	//ofstream newServices;
 	string nameDS = "Done Services";
-	fstream doneServices;
+	//ofstream doneServices;
 
 	StatusService status;
 
 public:
 	Mail(int balance) : balance(balance)
 	{
-		newServices.open(nameNS);
-		doneServices.open(nameDS);
+		//newServices.open(nameNS);
+		//doneServices.open(nameDS);
 
 		Product p;
 
@@ -97,8 +98,8 @@ public:
 	}
 	~Mail()
 	{
-		newServices.close();
-		doneServices.close();
+		//newServices.close();
+		//doneServices.close();
 	}
 
 	void AddProduct() {
@@ -204,12 +205,35 @@ public:
 	
 	void ShowServiceOrder() {
 
+		ofstream outf("d.txt");
+		
+		cout << "\n\nFile is create...\n\n";
+		
+		outf << "cccc";
+		
+		for (int i = 0; i < database.size(); i++) {
+			outf << "#" << i + 1 << endl;
+			/*
+			outf << "Name: " << database[i].product.name << endl;
+			outf << "Company: " << database[i].product.company << endl;
+			outf << "Guarantee: " << database[i].product.guarantee << endl;
+			outf << "Price: " << database[i].product.price << endl;
+			outf << "Date: " << database[i].year << "/" << database[i].month << "/" << database[i].day << endl;
+			outf << "Status: " << database[i].status << endl;
+			*/
+		}
+		outf.close();
 	}
+
+	
 	//виконані
+	/*
 	void ShowPerformedServices() {
 
-	}
 
+
+	}
+	*/
 	void Menu() {
 		cout << "\n|MENU| Nova Poshta - Serivses\n\n";
 		cout << "1 - Add product\n";
@@ -236,11 +260,11 @@ public:
 			Menu();
 			break;
 		case 3:
-
+			//ShowServiceOrder();
 			Menu();
 			break;
 		case 4:
-
+			//ShowPerformedServices();
 			Menu();
 			break;
 		case 5:

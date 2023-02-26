@@ -1,12 +1,13 @@
 ﻿#include <iostream>
-#include "links.h"
 #include "classes.cpp"
 
 int main()
 {
-	Mail vlad(400);
+	Mail vlad(600);
 
-	vlad.ShowListProducts();
+	vlad.Menu();
 	
-	
+	string name = "aaa.txt";
+	ofstream outf(name);
+	outf << name << "\n\n\n\n\n5555";
 }
