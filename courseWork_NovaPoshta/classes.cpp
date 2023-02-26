@@ -7,6 +7,7 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <windows.h>
 
 //додавати невиконані доставки в 1 файл
 //додавати виконані доставки в 2 файл
@@ -59,9 +60,9 @@ private:
 
 	int balance;
 	
-	string nameNS = "New Services";
+	string nameNS = "NewServices.txt";
 	//ofstream newServices;
-	string nameDS = "Done Services";
+	string nameDS = "DoneServices.txt";
 	//ofstream doneServices;
 
 	StatusService status;
@@ -181,6 +182,9 @@ public:
 		db.day = ltm->tm_mday;
 		db.status = ss.inProcess;
 
+		Sleep(300000);
+		db.status = ss.done;
+
 		database.push_back(db);
 
 		int v = 0;
@@ -201,39 +205,70 @@ public:
 		Receipt();
 
 	}
-	//невиконані
-	
+
+	//невиконані	
 	void ShowServiceOrder() {
 
-		ofstream outf("d.txt");
+		ofstream outf(nameNS);
 		
-		cout << "\n\nFile is create...\n\n";
+		outf.open(nameNS);
 		
-		outf << "cccc";
-		
-		for (int i = 0; i < database.size(); i++) {
-			outf << "#" << i + 1 << endl;
-			/*
-			outf << "Name: " << database[i].product.name << endl;
-			outf << "Company: " << database[i].product.company << endl;
-			outf << "Guarantee: " << database[i].product.guarantee << endl;
-			outf << "Price: " << database[i].product.price << endl;
-			outf << "Date: " << database[i].year << "/" << database[i].month << "/" << database[i].day << endl;
-			outf << "Status: " << database[i].status << endl;
-			*/
+		if (outf.is_open()) {
+			cout << "\n\nFile is create...\n\n";
 		}
+		else {
+			cout << "\n\nError file\n\n";
+		}
+		
+				
+		for (int i = 0; i < database.size(); i++) {
+			if (database[i].status == status.inProcess) {
+				outf << "#" << i + 1 << endl;
+
+				outf << "Name: " << database[i].product.name << endl;
+				outf << "Company: " << database[i].product.company << endl;
+				outf << "Guarantee: " << database[i].product.guarantee << endl;
+				outf << "Price: " << database[i].product.price << endl;
+				outf << "Date: " << database[i].year << "/" << database[i].month << "/" << database[i].day << endl;
+				outf << "Status: " << database[i].status << endl;
+			}
+		}
+
 		outf.close();
 	}
 
-	
 	//виконані
-	/*
 	void ShowPerformedServices() {
 
+		ofstream outf(nameDS);
 
+		outf.open(nameDS);
+
+		if (outf.is_open()) {
+			cout << "\n\nFile is create...\n\n";
+		}
+		else {
+			cout << "\n\nError file\n\n";
+		}
+
+
+		for (int i = 0; i < database.size(); i++) {
+			if (database[i].status == status.done) {
+				outf << "#" << i + 1 << endl;
+
+				outf << "Name: " << database[i].product.name << endl;
+				outf << "Company: " << database[i].product.company << endl;
+				outf << "Guarantee: " << database[i].product.guarantee << endl;
+				outf << "Price: " << database[i].product.price << endl;
+				outf << "Date: " << database[i].year << "/" << database[i].month << "/" << database[i].day << endl;
+				outf << "Status: " << database[i].status << endl;
+			}
+		}
+
+		outf.close();
 
 	}
-	*/
+	
 	void Menu() {
 		cout << "\n|MENU| Nova Poshta - Serivses\n\n";
 		cout << "1 - Add product\n";

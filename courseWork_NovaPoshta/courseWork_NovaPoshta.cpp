@@ -5,6 +5,11 @@ int main()
 {
 	Mail vlad(600);
 
-	vlad.Menu();
+	//vlad.Menu();
 	
+	vlad.Order();
+	vlad.ShowServiceOrder();
+
+	
+
 }
