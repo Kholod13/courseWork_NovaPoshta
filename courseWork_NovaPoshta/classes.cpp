@@ -19,6 +19,7 @@ using std::string;
 using std::endl;
 using std::vector;
 using std::fstream;
+using std::ofstream;
 
 struct Product {
 	string name;
@@ -259,7 +260,7 @@ public:
 			Menu();
 			break;
 		case 3:
-			//ShowServiceOrder();
+			ShowServiceOrder();
 			Menu();
 			break;
 		case 4:
