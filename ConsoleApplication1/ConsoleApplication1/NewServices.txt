@@ -1,0 +1,14 @@
+#1
+Name: Lamp
+Company: Smart light
+Guarantee: 6
+Price: 74
+Date: 2023/2/27
+Status: become...
+#2
+Name: Lamp
+Company: Smart light
+Guarantee: 6
+Price: 74
+Date: 2023/2/27
+Status: become...
